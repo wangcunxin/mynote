@@ -25,7 +25,7 @@ http://docs.grafana.org/installation/debian/
 4.hadoop2.6.4  
 http://mirrors.cnnic.cn/apache/hadoop/common/hadoop-2.6.4/hadoop-2.6.4-src.tar.gz 
 http://apache.fayea.com/hadoop/common/hadoop-2.6.4/hadoop-2.6.4.tar.gz 
-α�ֲ�ʽ��Ⱥ��
+Î±·Ö²¼Ê½¼¯Èº£º
 http://www.powerxing.com/install-hadoop/
 http://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-common/ClusterSetup.html#Installation
 
@@ -36,3 +36,6 @@ http://downloads.lightbend.com/scala/2.10.6/scala-2.10.6.deb
 http://downloads.lightbend.com/scala/2.10.6/scala-2.10.6.tgz 
 
 http://apache.fayea.com/spark/spark-1.6.2/spark-1.6.2-bin-hadoop2.6.tgz
+
+
+
