@@ -1,0 +1,8 @@
+bin/kafka-topics.sh --zookeeper cdh-slave0 --describe
+
+bin/kafka-topics.sh --zookeeper cdh-slave0:2181 --create  --partitions 3 --replication-factor 3 --topic test_flume
+
+bin/kafka-console-producer.sh --broker-list cdh-slave0:9092 --topic test_flume
+
+bin/kafka-console-consumer.sh --zookeeper cdh-slave0:2181 --topic test_flume --from-beginning
+

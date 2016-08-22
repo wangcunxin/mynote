@@ -1,0 +1,61 @@
+
+<configuration>
+        <!--NodeManager上运行的附属服务。需配置成mapreduce_shuffle，才可运行MapReduce程序-->
+    <property>
+                <name>yarn.nodemanager.aux-services</name>
+                <value>mapreduce_shuffle</value>
+    </property>
+   <property>
+                <name>yarn.log-aggregation-enable</name>
+                <value>true</value>
+   </property>
+        
+     <property>
+            <description>How long to keep aggregation logs before deleting them.  -1 disables.
+            Be careful set this too small and you will spam the name node.</description>
+            <name>yarn.log-aggregation.retain-seconds</name>
+            <value>1296000</value>
+      </property>
+      <!--rm ha -->
+    <property>
+                <name>yarn.resourcemanager.ha.enabled</name>
+                <value>true</value>
+        </property>
+
+        <property>
+            <name>yarn.resourcemanager.ha.rm-ids</name>
+            <value>MASTER1,MASTER2</value>
+        </property>
+
+        <property>
+            <name>yarn.resourcemanager.hostname.MASTER1</name>
+            <value>${NAMENODE1}</value>
+        </property>
+
+        <property>
+            <name>yarn.resourcemanager.hostname.MASTER2</name>
+               <value>${NAMENODE2}</value>
+        </property>
+            <!—-开启自动恢复功能-->
+        <property>
+            <name>yarn.resourcemanager.recovery.enabled</name>
+            <value>true</value>
+        </property>
+            <!--配置RM状态信息存储方式，有MemStore和ZKStore-->
+        <property>
+            <name>yarn.resourcemanager.store.class</name>
+            <value>org.apache.hadoop.yarn.server.resourcemanager.recovery.ZKRMStateStore</value>
+        </property>
+
+        <property>
+            <name>yarn.resourcemanager.zk-address</name>
+            <value>${ZOOKEEPER}</value>
+            <description>For multiple zk services, separate them with comma</description>
+        </property>
+
+        <property>
+              <name>yarn.resourcemanager.cluster-id</name>
+              <value>yarn-cluster</value>
+        </property>
+
+</configuration>

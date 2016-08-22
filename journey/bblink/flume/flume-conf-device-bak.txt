@@ -1,0 +1,330 @@
+
+#acinfo acdeviceinfo apinfo useronlineinfo usernetlog userapplog userdetectedinfo userconnectedinfo userlogininfo userauthorizedinfo
+
+#define agent_device
+agent_device.sources  = src_acinfo src_acdeviceinfo src_apinfo src_useronlineinfo src_usernetlog src_userapplog src_userdetectedinfo src_userconnectedinfo src_userlogininfo src_userauthorizedinfo
+agent_device.channels = ch_acinfo ch_acdeviceinfo ch_apinfo ch_useronlineinfo ch_usernetlog ch_userapplog ch_userdetectedinfo ch_userconnectedinfo ch_userlogininfo ch_userauthorizedinfo
+agent_device.sinks    = sink_acinfo sink_acdeviceinfo sink_apinfo sink_useronlineinfo sink_usernetlog sink_userapplog sink_userdetectedinfo sink_userconnectedinfo sink_userlogininfo sink_userauthorizedinfo
+
+#---------------acinfo---------------1
+#define source
+agent_device.sources.src_acinfo.type = org.apache.flume.source.kafka.KafkaSource
+agent_device.sources.src_acinfo.zookeeperConnect = slave0:2181,slave1:2181,slave2:2181
+agent_device.sources.src_acinfo.topic = acinfo
+agent_device.sources.src_acinfo.batchSize = 1000
+agent_device.sources.src_acinfo.groupId = group_acinfo
+
+#define sink
+agent_device.sinks.sink_acinfo.type = hdfs
+agent_device.sinks.sink_acinfo.hdfs.writeFormat = Text
+agent_device.sinks.sink_acinfo.hdfs.fileType = DataStream
+agent_device.sinks.sink_acinfo.hdfs.filePrefix =flume
+agent_device.sinks.sink_acinfo.hdfs.useLocalTimeStamp = true
+agent_device.sinks.sink_acinfo.hdfs.path = hdfs://master:8020/logs_origin/device/acinfo/%Y%m%d
+agent_device.sinks.sink_acinfo.hdfs.rollCount=0
+agent_device.sinks.sink_acinfo.hdfs.rollSize=512000000
+agent_device.sinks.sink_acinfo.hdfs.rollInterval=600
+agent_device.sinks.sink_acinfo.hdfs.batchSize=1000
+agent_device.sinks.sink_acinfo.hdfs.idleTimeout=10000
+agent_device.sinks.sink_acinfo.hdfs.callTimeout=10000
+
+#define channel
+agent_device.channels.ch_acinfo.type = file
+agent_device.channels.ch_acinfo.checkpointDir = /data/tmp/flume/checkpoint_acinfo
+agent_device.channels.ch_acinfo.dataDirs = /data/tmp/flume/data_acinfo
+
+
+#define source and sink match channel
+agent_device.sources.src_acinfo.channels = ch_acinfo
+agent_device.sinks.sink_acinfo.channel = ch_acinfo
+
+#---------------acdeviceinfo---------------2
+#define source
+agent_device.sources.src_acdeviceinfo.type = org.apache.flume.source.kafka.KafkaSource
+agent_device.sources.src_acdeviceinfo.zookeeperConnect = slave0:2181,slave1:2181,slave2:2181
+agent_device.sources.src_acdeviceinfo.topic = acdeviceinfo
+agent_device.sources.src_acdeviceinfo.batchSize = 1000
+agent_device.sources.src_acdeviceinfo.groupId = group_acdeviceinfo
+
+#define sink
+agent_device.sinks.sink_acdeviceinfo.type = hdfs
+agent_device.sinks.sink_acdeviceinfo.hdfs.writeFormat = Text
+agent_device.sinks.sink_acdeviceinfo.hdfs.fileType = DataStream
+agent_device.sinks.sink_acdeviceinfo.hdfs.filePrefix =flume
+agent_device.sinks.sink_acdeviceinfo.hdfs.useLocalTimeStamp = true
+agent_device.sinks.sink_acdeviceinfo.hdfs.path = hdfs://master:8020/logs_origin/device/acdeviceinfo/%Y%m%d
+agent_device.sinks.sink_acdeviceinfo.hdfs.rollCount=0
+agent_device.sinks.sink_acdeviceinfo.hdfs.rollSize=512000000
+agent_device.sinks.sink_acdeviceinfo.hdfs.rollInterval=600
+agent_device.sinks.sink_acdeviceinfo.hdfs.batchSize=1000
+agent_device.sinks.sink_acdeviceinfo.hdfs.idleTimeout=10000
+agent_device.sinks.sink_acdeviceinfo.hdfs.callTimeout=10000
+
+#define channel
+agent_device.channels.ch_acdeviceinfo.type = file
+agent_device.channels.ch_acdeviceinfo.checkpointDir = /data/tmp/flume/checkpoint_acdeviceinfo
+agent_device.channels.ch_acdeviceinfo.dataDirs = /data/tmp/flume/data_acdeviceinfo
+
+
+#define source and sink match channel
+agent_device.sources.src_acdeviceinfo.channels = ch_acdeviceinfo
+agent_device.sinks.sink_acdeviceinfo.channel = ch_acdeviceinfo
+
+#---------------apinfo---------------3
+#define source
+agent_device.sources.src_apinfo.type = org.apache.flume.source.kafka.KafkaSource
+agent_device.sources.src_apinfo.zookeeperConnect = slave0:2181,slave1:2181,slave2:2181
+agent_device.sources.src_apinfo.topic = apinfo
+agent_device.sources.src_apinfo.batchSize = 1000
+agent_device.sources.src_apinfo.groupId = group_apinfo
+
+#define sink
+agent_device.sinks.sink_apinfo.type = hdfs
+agent_device.sinks.sink_apinfo.hdfs.writeFormat = Text
+agent_device.sinks.sink_apinfo.hdfs.fileType = DataStream
+agent_device.sinks.sink_apinfo.hdfs.filePrefix =flume
+agent_device.sinks.sink_apinfo.hdfs.useLocalTimeStamp = true
+agent_device.sinks.sink_apinfo.hdfs.path = hdfs://master:8020/logs_origin/device/apinfo/%Y%m%d
+agent_device.sinks.sink_apinfo.hdfs.rollCount=0
+agent_device.sinks.sink_apinfo.hdfs.rollSize=512000000
+agent_device.sinks.sink_apinfo.hdfs.rollInterval=600
+agent_device.sinks.sink_apinfo.hdfs.batchSize=1000
+agent_device.sinks.sink_apinfo.hdfs.idleTimeout=10000
+agent_device.sinks.sink_apinfo.hdfs.callTimeout=10000
+
+#define channel
+agent_device.channels.ch_apinfo.type = file
+agent_device.channels.ch_apinfo.checkpointDir = /data/tmp/flume/checkpoint_apinfo
+agent_device.channels.ch_apinfo.dataDirs = /data/tmp/flume/data_apinfo
+
+
+#define source and sink match channel
+agent_device.sources.src_apinfo.channels = ch_apinfo
+agent_device.sinks.sink_apinfo.channel = ch_apinfo
+
+#---------------useronlineinfo---------------4
+#define source
+agent_device.sources.src_useronlineinfo.type = org.apache.flume.source.kafka.KafkaSource
+agent_device.sources.src_useronlineinfo.zookeeperConnect = slave0:2181,slave1:2181,slave2:2181
+agent_device.sources.src_useronlineinfo.topic = useronlineinfo
+agent_device.sources.src_useronlineinfo.batchSize = 1000
+agent_device.sources.src_useronlineinfo.groupId = group_useronlineinfo
+
+#define sink
+agent_device.sinks.sink_useronlineinfo.type = hdfs
+agent_device.sinks.sink_useronlineinfo.hdfs.writeFormat = Text
+agent_device.sinks.sink_useronlineinfo.hdfs.fileType = DataStream
+agent_device.sinks.sink_useronlineinfo.hdfs.filePrefix =flume
+agent_device.sinks.sink_useronlineinfo.hdfs.useLocalTimeStamp = true
+agent_device.sinks.sink_useronlineinfo.hdfs.path = hdfs://master:8020/logs_origin/device/useronlineinfo/%Y%m
+%d
+agent_device.sinks.sink_useronlineinfo.hdfs.rollCount=0
+agent_device.sinks.sink_useronlineinfo.hdfs.rollSize=512000000
+agent_device.sinks.sink_useronlineinfo.hdfs.rollInterval=600
+agent_device.sinks.sink_useronlineinfo.hdfs.batchSize=1000
+agent_device.sinks.sink_useronlineinfo.hdfs.idleTimeout=10000
+agent_device.sinks.sink_useronlineinfo.hdfs.callTimeout=10000
+
+#define channel
+agent_device.channels.ch_useronlineinfo.type = file
+agent_device.channels.ch_useronlineinfo.checkpointDir = /data/tmp/flume/checkpoint_useronlineinfo
+agent_device.channels.ch_useronlineinfo.dataDirs = /data/tmp/flume/data_useronlineinfo
+
+
+#define source and sink match channel
+agent_device.sources.src_useronlineinfo.channels = ch_useronlineinfo
+agent_device.sinks.sink_useronlineinfo.channel = ch_useronlineinfo
+
+#---------------usernetlog---------------5
+#define source
+agent_device.sources.src_usernetlog.type = org.apache.flume.source.kafka.KafkaSource
+agent_device.sources.src_usernetlog.zookeeperConnect = slave0:2181,slave1:2181,slave2:2181
+agent_device.sources.src_usernetlog.topic = usernetlog
+agent_device.sources.src_usernetlog.batchSize = 1000
+agent_device.sources.src_usernetlog.groupId = group_usernetlog
+
+#define sink
+agent_device.sinks.sink_usernetlog.type = hdfs
+agent_device.sinks.sink_usernetlog.hdfs.writeFormat = Text
+agent_device.sinks.sink_usernetlog.hdfs.fileType = DataStream
+agent_device.sinks.sink_usernetlog.hdfs.filePrefix =flume
+agent_device.sinks.sink_usernetlog.hdfs.useLocalTimeStamp = true
+agent_device.sinks.sink_usernetlog.hdfs.path = hdfs://master:8020/logs_origin/device/usernetlog/%Y%m%d
+agent_device.sinks.sink_usernetlog.hdfs.rollCount=0
+agent_device.sinks.sink_usernetlog.hdfs.rollSize=512000000
+agent_device.sinks.sink_usernetlog.hdfs.rollInterval=600
+agent_device.sinks.sink_usernetlog.hdfs.batchSize=1000
+agent_device.sinks.sink_usernetlog.hdfs.idleTimeout=10000
+agent_device.sinks.sink_usernetlog.hdfs.callTimeout=10000
+
+#define channel
+agent_device.channels.ch_usernetlog.type = file
+agent_device.channels.ch_usernetlog.checkpointDir = /data/tmp/flume/checkpoint_usernetlog
+agent_device.channels.ch_usernetlog.dataDirs = /data/tmp/flume/data_usernetlog
+
+
+#define source and sink match channel
+agent_device.sources.src_usernetlog.channels = ch_usernetlog
+agent_device.sinks.sink_usernetlog.channel = ch_usernetlog
+
+#---------------userapplog---------------6
+#define source
+agent_device.sources.src_userapplog.type = org.apache.flume.source.kafka.KafkaSource
+agent_device.sources.src_userapplog.zookeeperConnect = slave0:2181,slave1:2181,slave2:2181
+agent_device.sources.src_userapplog.topic = userapplog
+agent_device.sources.src_userapplog.batchSize = 1000
+agent_device.sources.src_userapplog.groupId = group_userapplog
+
+#define sink
+agent_device.sinks.sink_userapplog.type = hdfs
+agent_device.sinks.sink_userapplog.hdfs.writeFormat = Text
+agent_device.sinks.sink_userapplog.hdfs.fileType = DataStream
+agent_device.sinks.sink_userapplog.hdfs.filePrefix =flume
+agent_device.sinks.sink_userapplog.hdfs.useLocalTimeStamp = true
+agent_device.sinks.sink_userapplog.hdfs.path = hdfs://master:8020/logs_origin/device/userapplog/%Y%m%d
+agent_device.sinks.sink_userapplog.hdfs.rollCount=0
+agent_device.sinks.sink_userapplog.hdfs.rollSize=512000000
+agent_device.sinks.sink_userapplog.hdfs.rollInterval=600
+agent_device.sinks.sink_userapplog.hdfs.batchSize=1000
+agent_device.sinks.sink_userapplog.hdfs.idleTimeout=10000
+agent_device.sinks.sink_userapplog.hdfs.callTimeout=10000
+
+#define channel
+agent_device.channels.ch_userapplog.type = file
+agent_device.channels.ch_userapplog.checkpointDir = /data/tmp/flume/checkpoint_userapplog
+agent_device.channels.ch_userapplog.dataDirs = /data/tmp/flume/data_userapplog
+
+
+#define source and sink match channel
+agent_device.sources.src_userapplog.channels = ch_userapplog
+agent_device.sinks.sink_userapplog.channel = ch_userapplog
+
+
+#---------------userdetectedinfo---------------7
+#define source
+agent_device.sources.src_userdetectedinfo.type = org.apache.flume.source.kafka.KafkaSource
+agent_device.sources.src_userdetectedinfo.zookeeperConnect = slave0:2181,slave1:2181,slave2:2181
+agent_device.sources.src_userdetectedinfo.topic = userdetectedinfo
+agent_device.sources.src_userdetectedinfo.batchSize = 1000
+agent_device.sources.src_userdetectedinfo.groupId = group_userdetectedinfo
+
+#define sink
+agent_device.sinks.sink_userdetectedinfo.type = hdfs
+agent_device.sinks.sink_userdetectedinfo.hdfs.writeFormat = Text
+agent_device.sinks.sink_userdetectedinfo.hdfs.fileType = DataStream
+agent_device.sinks.sink_userdetectedinfo.hdfs.filePrefix =flume
+agent_device.sinks.sink_userdetectedinfo.hdfs.useLocalTimeStamp = true
+agent_device.sinks.sink_userdetectedinfo.hdfs.path = hdfs://master:8020/logs_origin/device/userdetectedinfo/%Y%m%d
+agent_device.sinks.sink_userdetectedinfo.hdfs.rollCount=0
+agent_device.sinks.sink_userdetectedinfo.hdfs.rollSize=512000000
+agent_device.sinks.sink_userdetectedinfo.hdfs.rollInterval=600
+agent_device.sinks.sink_userdetectedinfo.hdfs.batchSize=1000
+agent_device.sinks.sink_userdetectedinfo.hdfs.idleTimeout=10000
+agent_device.sinks.sink_userdetectedinfo.hdfs.callTimeout=10000
+
+#define channel
+agent_device.channels.ch_userdetectedinfo.type = file
+agent_device.channels.ch_userdetectedinfo.checkpointDir = /data/tmp/flume/checkpoint_userdetectedinfo
+agent_device.channels.ch_userdetectedinfo.dataDirs = /data/tmp/flume/data_userdetectedinfo
+
+
+#define source and sink match channel
+agent_device.sources.src_userdetectedinfo.channels = ch_userdetectedinfo
+agent_device.sinks.sink_userdetectedinfo.channel = ch_userdetectedinfo
+
+#---------------userconnectedinfo---------------8
+#define source
+agent_device.sources.src_userconnectedinfo.type = org.apache.flume.source.kafka.KafkaSource
+agent_device.sources.src_userconnectedinfo.zookeeperConnect = slave0:2181,slave1:2181,slave2:2181
+agent_device.sources.src_userconnectedinfo.topic = userconnectedinfo
+agent_device.sources.src_userconnectedinfo.batchSize = 1000
+agent_device.sources.src_userconnectedinfo.groupId = group_userconnectedinfo
+
+#define sink
+agent_device.sinks.sink_userconnectedinfo.type = hdfs
+agent_device.sinks.sink_userconnectedinfo.hdfs.writeFormat = Text
+agent_device.sinks.sink_userconnectedinfo.hdfs.fileType = DataStream
+agent_device.sinks.sink_userconnectedinfo.hdfs.filePrefix =flume
+agent_device.sinks.sink_userconnectedinfo.hdfs.useLocalTimeStamp = true
+agent_device.sinks.sink_userconnectedinfo.hdfs.path = hdfs://master:8020/logs_origin/device/userconnectedinfo/%Y%m%d
+agent_device.sinks.sink_userconnectedinfo.hdfs.rollCount=0
+agent_device.sinks.sink_userconnectedinfo.hdfs.rollSize=512000000
+agent_device.sinks.sink_userconnectedinfo.hdfs.rollInterval=600
+agent_device.sinks.sink_userconnectedinfo.hdfs.batchSize=1000
+agent_device.sinks.sink_userconnectedinfo.hdfs.idleTimeout=10000
+agent_device.sinks.sink_userconnectedinfo.hdfs.callTimeout=10000
+
+#define channel
+agent_device.channels.ch_userconnectedinfo.type = file
+agent_device.channels.ch_userconnectedinfo.checkpointDir = /data/tmp/flume/checkpoint_userconnectedinfo
+agent_device.channels.ch_userconnectedinfo.dataDirs = /data/tmp/flume/data_userconnectedinfo
+
+
+#define source and sink match channel
+agent_device.sources.src_userconnectedinfo.channels = ch_userconnectedinfo
+agent_device.sinks.sink_userconnectedinfo.channel = ch_userconnectedinfo
+
+#---------------userlogininfo---------------9
+#define source
+agent_device.sources.src_userlogininfo.type = org.apache.flume.source.kafka.KafkaSource
+agent_device.sources.src_userlogininfo.zookeeperConnect = slave0:2181,slave1:2181,slave2:2181
+agent_device.sources.src_userlogininfo.topic = userlogininfo
+agent_device.sources.src_userlogininfo.batchSize = 1000
+agent_device.sources.src_userlogininfo.groupId = group_userlogininfo
+
+#define sink
+agent_device.sinks.sink_userlogininfo.type = hdfs
+agent_device.sinks.sink_userlogininfo.hdfs.writeFormat = Text
+agent_device.sinks.sink_userlogininfo.hdfs.fileType = DataStream
+agent_device.sinks.sink_userlogininfo.hdfs.filePrefix =flume
+agent_device.sinks.sink_userlogininfo.hdfs.useLocalTimeStamp = true
+agent_device.sinks.sink_userlogininfo.hdfs.path = hdfs://master:8020/logs_origin/device/userlogininfo/%Y%m%d
+agent_device.sinks.sink_userlogininfo.hdfs.rollCount=0
+agent_device.sinks.sink_userlogininfo.hdfs.rollSize=512000000
+agent_device.sinks.sink_userlogininfo.hdfs.rollInterval=600
+agent_device.sinks.sink_userlogininfo.hdfs.batchSize=1000
+agent_device.sinks.sink_userlogininfo.hdfs.idleTimeout=10000
+agent_device.sinks.sink_userlogininfo.hdfs.callTimeout=10000
+
+#define channel
+agent_device.channels.ch_userlogininfo.type = file
+agent_device.channels.ch_userlogininfo.checkpointDir = /data/tmp/flume/checkpoint_userlogininfo
+agent_device.channels.ch_userlogininfo.dataDirs = /data/tmp/flume/data_userlogininfo
+
+
+#define source and sink match channel
+agent_device.sources.src_userlogininfo.channels = ch_userlogininfo
+agent_device.sinks.sink_userlogininfo.channel = ch_userlogininfo
+
+
+#---------------userauthorizedinfo---------------10
+#define source
+agent_device.sources.src_userauthorizedinfo.type = org.apache.flume.source.kafka.KafkaSource
+agent_device.sources.src_userauthorizedinfo.zookeeperConnect = slave0:2181,slave1:2181,slave2:2181
+agent_device.sources.src_userauthorizedinfo.topic = userauthorizedinfo
+agent_device.sources.src_userauthorizedinfo.batchSize = 1000
+agent_device.sources.src_userauthorizedinfo.groupId = group_userauthorizedinfo
+
+#define sink
+agent_device.sinks.sink_userauthorizedinfo.type = hdfs
+agent_device.sinks.sink_userauthorizedinfo.hdfs.writeFormat = Text
+agent_device.sinks.sink_userauthorizedinfo.hdfs.fileType = DataStream
+agent_device.sinks.sink_userauthorizedinfo.hdfs.filePrefix =flume
+agent_device.sinks.sink_userauthorizedinfo.hdfs.useLocalTimeStamp = true
+agent_device.sinks.sink_userauthorizedinfo.hdfs.path = hdfs://master:8020/logs_origin/device/userauthorizedinfo/%Y%m%d
+agent_device.sinks.sink_userauthorizedinfo.hdfs.rollCount=0
+agent_device.sinks.sink_userauthorizedinfo.hdfs.rollSize=512000000
+agent_device.sinks.sink_userauthorizedinfo.hdfs.rollInterval=600
+agent_device.sinks.sink_userauthorizedinfo.hdfs.batchSize=1000
+agent_device.sinks.sink_userauthorizedinfo.hdfs.idleTimeout=10000
+agent_device.sinks.sink_userauthorizedinfo.hdfs.callTimeout=10000
+
+#define channel
+agent_device.channels.ch_userauthorizedinfo.type = file
+agent_device.channels.ch_userauthorizedinfo.checkpointDir = /data/tmp/flume/checkpoint_userauthorizedinfo
+agent_device.channels.ch_userauthorizedinfo.dataDirs = /data/tmp/flume/data_userauthorizedinfo
+
+
+#define source and sink match channel
+agent_device.sources.src_userauthorizedinfo.channels = ch_userauthorizedinfo
+agent_device.sinks.sink_userauthorizedinfo.channel = ch_userauthorizedinfo

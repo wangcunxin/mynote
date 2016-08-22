@@ -1,0 +1,101 @@
+<configuration>
+    <!--noamenode dir-->
+    <property>
+        <name>dfs.name.dir</name>
+        <value>${GALAXY_HOME}/data/namenode</value>
+    </property>
+    <!-- datanode dir-->
+   <property>
+           <name>dfs.data.dir</name>
+            <value>${GALAXY_HOME}/data/datanode</value>
+   </property>
+    <!--replication size -->
+    <property>
+             <name>dfs.replication</name>
+             <value>3</value>
+     </property>
+     <!--使用webhdfs的LISTSTATUS、LISTFILESTATUS等需要列出文件、文件夹状态的命令 -->
+   <property>
+          <name>dfs.webhdfs.enabled</name>
+             <value>true</value>
+   </property>
+   
+    <!--HA+Federation name service -->
+     <property>
+          <name>dfs.nameservices</name>
+          <value>${NAMESERVICE}</value>
+          <description>提供服务的NS逻辑名称，与core-site.xml里的对应</description>
+   </property>
+     <!--logical namenode -->
+    <property>
+          <name>dfs.ha.namenodes.$NAMESERVICE</name>
+          <value>MASTER1,MASTER2</value>
+          <description>列出该NAMESERVICE逻辑名称下的NameNode逻辑名称</description>
+    </property>
+  <!--namenode1 rpc address -->
+    <property>
+         <name>dfs.namenode.rpc-address.$NAMESERVICE.MASTER1</name>
+         <value>${NAMENODE1}:8020</value>
+          <description>指定NameNode的RPC位置</description>
+  </property>
+  <!--namenode2 rpc address -->
+  <property>
+         <name>dfs.namenode.rpc-address.$NAMESERVICE.MASTER2</name>
+         <value>${NAMENODE2}:8020</value>
+         <description/>
+ <!--namenode1 http address -->
+  <property>
+       <name>dfs.namenode.http-address.$NAMESERVICE.MASTER1</name>
+       <value>${NAMENODE1}:50070</value>
+       <description>指定NameNode的Web Server位置</description>
+  </property>
+  <!--namenode2 http address --> 
+  <property>
+       <name>dfs.namenode.http-address.$NAMESERVICE.MASTER2</name>
+     <value>${NAMENODE2}:50070</value>
+  </property>
+ <!--客户端连接配置：是否自动切换-->
+   <property>
+      <name>dfs.ha.automatic-failover.enabled</name>
+      <value>true</value>
+   </property>
+   <property>
+          <name>dfs.client.failover.proxy.provider.${NAMESERVICE}</name>
+         <value>org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider</value>
+         <description>设置 HDFS 客户端与 Active Namenode 进行交互的 JAVA 实现类, HDFS 客户端通过该参数来寻找到集群中的 Active NameNode </description>
+   </property>
+   
+   <!--namenode ha-->
+   <property>
+         <name>dfs.ha.fencing.methods</name>
+         <value>sshfence</value>
+         <description>在主备节点切换时实现隔离机制(ssh、shell),指定HA做隔离的方法，缺省是ssh，可设为shell</description>
+   </property>
+   <property>
+        <name>dfs.ha.fencing.ssh.private-key-files</name>
+      <value>/home/${GALAXY_USER}/.ssh/id_rsa</value>
+      <description>主备节点配置双向的 RSA 免密码登陆,指定一个私钥文件</description>
+   </property>
+
+    <!--ActiveNameNode 会将 Edit Log 写入这些 JournalNode 所配置的本地目录-->
+  <property>
+        <name>dfs.namenode.shared.edits.dir</name>
+     <value>qjournal://${QJOURNAL}/${NAMESERVICE}</value>
+     <description>journalNodeList,配置格式:qjournal://host1:port1;host2:port2;host3:port3/journalId</description>
+  </property>       
+   <!--JournalNode 所在节点上的一个目录，用于存放 editlog 和其他状态信息-->   
+   <property>
+        <name>dfs.journalnode.edits.dir</name>
+        <value>${GALAXY_HOME}/data/journalnode</value>
+   </property>
+
+    <!--开启hdfs的ACL-->
+   <property>
+       <name>dfs.permissions.enabled</name>
+       <value>true</value>
+   </property>
+   <property>
+       <name>dfs.namenode.acls.enabled</name>
+       <value>true</value>
+   </property>
+</configuration>

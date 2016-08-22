@@ -1,0 +1,105 @@
+
+# portal-loginlog portal-authorizedlog portal-jstrackinglog
+
+#define agent_portal
+agent_portal.sources  = src_portal-loginlog src_portal-authorizedlog src_portal-jstrackinglog
+agent_portal.channels = ch_portal-loginlog ch_portal-authorizedlog ch_portal-jstrackinglog
+agent_portal.sinks    = sink_portal-loginlog sink_portal-authorizedlog sink_portal-jstrackinglog
+
+#---------------portal-loginlog---------------1
+#define source
+agent_portal.sources.src_portal-loginlog.type = org.apache.flume.source.kafka.KafkaSource
+agent_portal.sources.src_portal-loginlog.zookeeperConnect = slave0:2181,slave1:2181,slave2:2181
+agent_portal.sources.src_portal-loginlog.topic = portal-loginlog
+agent_portal.sources.src_portal-loginlog.batchSize = 1000
+agent_portal.sources.src_portal-loginlog.groupId = group_portal-loginlog
+
+#define sink
+agent_portal.sinks.sink_portal-loginlog.type = hdfs
+agent_portal.sinks.sink_portal-loginlog.hdfs.writeFormat = Text
+agent_portal.sinks.sink_portal-loginlog.hdfs.fileType = DataStream
+agent_portal.sinks.sink_portal-loginlog.hdfs.filePrefix =flume
+agent_portal.sinks.sink_portal-loginlog.hdfs.useLocalTimeStamp = true
+agent_portal.sinks.sink_portal-loginlog.hdfs.path = hdfs://master:8020/logs_origin/portal/portal-loginlog/%Y%m%d
+agent_portal.sinks.sink_portal-loginlog.hdfs.rollCount=0
+agent_portal.sinks.sink_portal-loginlog.hdfs.rollSize=512000000
+agent_portal.sinks.sink_portal-loginlog.hdfs.rollInterval=600
+agent_portal.sinks.sink_portal-loginlog.hdfs.batchSize=1000
+agent_portal.sinks.sink_portal-loginlog.hdfs.idleTimeout=10000
+agent_portal.sinks.sink_portal-loginlog.hdfs.callTimeout=10000
+
+#define channel
+agent_portal.channels.ch_portal-loginlog.type = file
+agent_portal.channels.ch_portal-loginlog.checkpointDir = /data/tmp/flume/checkpoint_portal-loginlog
+agent_portal.channels.ch_portal-loginlog.dataDirs = /data/tmp/flume/data_portal-loginlog
+
+
+#define source and sink match channel
+agent_portal.sources.src_portal-loginlog.channels = ch_portal-loginlog
+agent_portal.sinks.sink_portal-loginlog.channel = ch_portal-loginlog
+
+
+#---------------portal-authorizedlog---------------2
+#define source
+agent_portal.sources.src_portal-authorizedlog.type = org.apache.flume.source.kafka.KafkaSource
+agent_portal.sources.src_portal-authorizedlog.zookeeperConnect = slave0:2181,slave1:2181,slave2:2181
+agent_portal.sources.src_portal-authorizedlog.topic = portal-authorizedlog
+agent_portal.sources.src_portal-authorizedlog.batchSize = 1000
+agent_portal.sources.src_portal-authorizedlog.groupId = group_portal-authorizedlog
+
+#define sink
+agent_portal.sinks.sink_portal-authorizedlog.type = hdfs
+agent_portal.sinks.sink_portal-authorizedlog.hdfs.writeFormat = Text
+agent_portal.sinks.sink_portal-authorizedlog.hdfs.fileType = DataStream
+agent_portal.sinks.sink_portal-authorizedlog.hdfs.filePrefix =flume
+agent_portal.sinks.sink_portal-authorizedlog.hdfs.useLocalTimeStamp = true
+agent_portal.sinks.sink_portal-authorizedlog.hdfs.path = hdfs://master:8020/logs_origin/portal/portal-authorizedlog/%Y%m%d
+agent_portal.sinks.sink_portal-authorizedlog.hdfs.rollCount=0
+agent_portal.sinks.sink_portal-authorizedlog.hdfs.rollSize=512000000
+agent_portal.sinks.sink_portal-authorizedlog.hdfs.rollInterval=600
+agent_portal.sinks.sink_portal-authorizedlog.hdfs.batchSize=1000
+agent_portal.sinks.sink_portal-authorizedlog.hdfs.idleTimeout=10000
+agent_portal.sinks.sink_portal-authorizedlog.hdfs.callTimeout=10000
+
+#define channel
+agent_portal.channels.ch_portal-authorizedlog.type = file
+agent_portal.channels.ch_portal-authorizedlog.checkpointDir = /data/tmp/flume/checkpoint_portal-authorizedlog
+agent_portal.channels.ch_portal-authorizedlog.dataDirs = /data/tmp/flume/data_portal-authorizedlog
+
+
+#define source and sink match channel
+agent_portal.sources.src_portal-authorizedlog.channels = ch_portal-authorizedlog
+agent_portal.sinks.sink_portal-authorizedlog.channel = ch_portal-authorizedlog
+
+
+#---------------portal-jstrackinglog---------------3
+#define source
+agent_portal.sources.src_portal-jstrackinglog.type = org.apache.flume.source.kafka.KafkaSource
+agent_portal.sources.src_portal-jstrackinglog.zookeeperConnect = slave0:2181,slave1:2181,slave2:2181
+agent_portal.sources.src_portal-jstrackinglog.topic = portal-jstrackinglog
+agent_portal.sources.src_portal-jstrackinglog.batchSize = 1000
+agent_portal.sources.src_portal-jstrackinglog.groupId = group_portal-jstrackinglog
+
+#define sink
+agent_portal.sinks.sink_portal-jstrackinglog.type = hdfs
+agent_portal.sinks.sink_portal-jstrackinglog.hdfs.writeFormat = Text
+agent_portal.sinks.sink_portal-jstrackinglog.hdfs.fileType = DataStream
+agent_portal.sinks.sink_portal-jstrackinglog.hdfs.filePrefix =flume
+agent_portal.sinks.sink_portal-jstrackinglog.hdfs.useLocalTimeStamp = true
+agent_portal.sinks.sink_portal-jstrackinglog.hdfs.path = hdfs://master:8020/logs_origin/portal/portal-jstrackinglog/%Y%m%d
+agent_portal.sinks.sink_portal-jstrackinglog.hdfs.rollCount=0
+agent_portal.sinks.sink_portal-jstrackinglog.hdfs.rollSize=512000000
+agent_portal.sinks.sink_portal-jstrackinglog.hdfs.rollInterval=600
+agent_portal.sinks.sink_portal-jstrackinglog.hdfs.batchSize=1000
+agent_portal.sinks.sink_portal-jstrackinglog.hdfs.idleTimeout=10000
+agent_portal.sinks.sink_portal-jstrackinglog.hdfs.callTimeout=10000
+
+#define channel
+agent_portal.channels.ch_portal-jstrackinglog.type = file
+agent_portal.channels.ch_portal-jstrackinglog.checkpointDir = /data/tmp/flume/checkpoint_portal-jstrackinglog
+agent_portal.channels.ch_portal-jstrackinglog.dataDirs = /data/tmp/flume/data_portal-jstrackinglog
+
+
+#define source and sink match channel
+agent_portal.sources.src_portal-jstrackinglog.channels = ch_portal-jstrackinglog
+agent_portal.sinks.sink_portal-jstrackinglog.channel = ch_portal-jstrackinglog

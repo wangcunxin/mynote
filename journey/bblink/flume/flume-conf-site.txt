@@ -1,0 +1,280 @@
+
+# site-sitePVv3 site-adLoadv1 site-adPlayv1 site-adClickv1 site-adMasterv1 site-adMasterv2 site-wxConcatFollowv3 site-wxConcatFollowMACv3
+
+#define agent_site
+agent_site.sources  = src_site-sitePVv3 src_site-adLoadv1 src_site-adPlayv1 src_site-adClickv1 src_site-adMasterv1 src_site-adMasterv2 src_site-wxConcatFollowv3 src_site-wxConcatFollowMACv3
+agent_site.channels = ch_site-sitePVv3 ch_site-adLoadv1 ch_site-adPlayv1 ch_site-adClickv1 ch_site-adMasterv1 ch_site-adMasterv2 ch_site-wxConcatFollowv3 ch_site-wxConcatFollowMACv3
+agent_site.sinks    = sink_site-sitePVv3 sink_site-adLoadv1 sink_site-adPlayv1 sink_site-adClickv1 sink_site-adMasterv1 sink_site-adMasterv2 sink_site-wxConcatFollowv3 sink_site-wxConcatFollowMACv3
+
+#---------------site-sitePVv3---------------1
+#define source
+agent_site.sources.src_site-sitePVv3.type = org.apache.flume.source.kafka.KafkaSource
+agent_site.sources.src_site-sitePVv3.zookeeperConnect = slave0:2181,slave1:2181,slave2:2181
+agent_site.sources.src_site-sitePVv3.topic = site-sitePVv3
+agent_site.sources.src_site-sitePVv3.batchSize = 1000
+agent_site.sources.src_site-sitePVv3.groupId = group_site-sitePVv3
+
+#define sink
+agent_site.sinks.sink_site-sitePVv3.type = hdfs
+agent_site.sinks.sink_site-sitePVv3.hdfs.writeFormat = Text
+agent_site.sinks.sink_site-sitePVv3.hdfs.fileType = DataStream
+agent_site.sinks.sink_site-sitePVv3.hdfs.filePrefix =flume
+agent_site.sinks.sink_site-sitePVv3.hdfs.useLocalTimeStamp = true
+agent_site.sinks.sink_site-sitePVv3.hdfs.path = hdfs://master:8020/logs_origin/site/site-sitePVv3/%Y%m%d
+agent_site.sinks.sink_site-sitePVv3.hdfs.rollCount=0
+agent_site.sinks.sink_site-sitePVv3.hdfs.rollSize=512000000
+agent_site.sinks.sink_site-sitePVv3.hdfs.rollInterval=600
+agent_site.sinks.sink_site-sitePVv3.hdfs.batchSize=1000
+agent_site.sinks.sink_site-sitePVv3.hdfs.idleTimeout=10000
+agent_site.sinks.sink_site-sitePVv3.hdfs.callTimeout=10000
+
+#define channel
+agent_site.channels.ch_site-sitePVv3.type = file
+agent_site.channels.ch_site-sitePVv3.transactionCapacity = 10000
+agent_site.channels.ch_site-sitePVv3.capacity = 100000000
+agent_site.channels.ch_site-sitePVv3.checkpointDir = /data/tmp/flume/checkpoint_site-sitePVv3
+agent_site.channels.ch_site-sitePVv3.dataDirs = /data/tmp/flume/data_site-sitePVv3
+
+
+#define source and sink match channel
+agent_site.sources.src_site-sitePVv3.channels = ch_site-sitePVv3
+agent_site.sinks.sink_site-sitePVv3.channel = ch_site-sitePVv3
+
+
+#---------------site-adLoadv1---------------2
+#define source
+agent_site.sources.src_site-adLoadv1.type = org.apache.flume.source.kafka.KafkaSource
+agent_site.sources.src_site-adLoadv1.zookeeperConnect = slave0:2181,slave1:2181,slave2:2181
+agent_site.sources.src_site-adLoadv1.topic = site-adLoadv1
+agent_site.sources.src_site-adLoadv1.batchSize = 1000
+agent_site.sources.src_site-adLoadv1.groupId = group_site-adLoadv1
+
+#define sink
+agent_site.sinks.sink_site-adLoadv1.type = hdfs
+agent_site.sinks.sink_site-adLoadv1.hdfs.writeFormat = Text
+agent_site.sinks.sink_site-adLoadv1.hdfs.fileType = DataStream
+agent_site.sinks.sink_site-adLoadv1.hdfs.filePrefix =flume
+agent_site.sinks.sink_site-adLoadv1.hdfs.useLocalTimeStamp = true
+agent_site.sinks.sink_site-adLoadv1.hdfs.path = hdfs://master:8020/logs_origin/site/site-adLoadv1/%Y%m%d
+agent_site.sinks.sink_site-adLoadv1.hdfs.rollCount=0
+agent_site.sinks.sink_site-adLoadv1.hdfs.rollSize=512000000
+agent_site.sinks.sink_site-adLoadv1.hdfs.rollInterval=600
+agent_site.sinks.sink_site-adLoadv1.hdfs.batchSize=1000
+agent_site.sinks.sink_site-adLoadv1.hdfs.idleTimeout=10000
+agent_site.sinks.sink_site-adLoadv1.hdfs.callTimeout=10000
+
+#define channel
+agent_site.channels.ch_site-adLoadv1.type = file
+agent_site.channels.ch_site-adLoadv1.transactionCapacity = 10000
+agent_site.channels.ch_site-adLoadv1.capacity = 100000000
+agent_site.channels.ch_site-adLoadv1.checkpointDir = /data/tmp/flume/checkpoint_site-adLoadv1
+agent_site.channels.ch_site-adLoadv1.dataDirs = /data/tmp/flume/data_site-adLoadv1
+
+
+#define source and sink match channel
+agent_site.sources.src_site-adLoadv1.channels = ch_site-adLoadv1
+agent_site.sinks.sink_site-adLoadv1.channel = ch_site-adLoadv1
+
+#---------------site-adPlayv1---------------3
+#define source
+agent_site.sources.src_site-adPlayv1.type = org.apache.flume.source.kafka.KafkaSource
+agent_site.sources.src_site-adPlayv1.zookeeperConnect = slave0:2181,slave1:2181,slave2:2181
+agent_site.sources.src_site-adPlayv1.topic = site-adPlayv1
+agent_site.sources.src_site-adPlayv1.batchSize = 1000
+agent_site.sources.src_site-adPlayv1.groupId = group_site-adPlayv1
+
+#define sink
+agent_site.sinks.sink_site-adPlayv1.type = hdfs
+agent_site.sinks.sink_site-adPlayv1.hdfs.writeFormat = Text
+agent_site.sinks.sink_site-adPlayv1.hdfs.fileType = DataStream
+agent_site.sinks.sink_site-adPlayv1.hdfs.filePrefix =flume
+agent_site.sinks.sink_site-adPlayv1.hdfs.useLocalTimeStamp = true
+agent_site.sinks.sink_site-adPlayv1.hdfs.path = hdfs://master:8020/logs_origin/site/site-adPlayv1/%Y%m%d
+agent_site.sinks.sink_site-adPlayv1.hdfs.rollCount=0
+agent_site.sinks.sink_site-adPlayv1.hdfs.rollSize=512000000
+agent_site.sinks.sink_site-adPlayv1.hdfs.rollInterval=600
+agent_site.sinks.sink_site-adPlayv1.hdfs.batchSize=1000
+agent_site.sinks.sink_site-adPlayv1.hdfs.idleTimeout=10000
+agent_site.sinks.sink_site-adPlayv1.hdfs.callTimeout=10000
+
+#define channel
+agent_site.channels.ch_site-adPlayv1.type = file
+agent_site.channels.ch_site-adPlayv1.transactionCapacity = 10000
+agent_site.channels.ch_site-adPlayv1.capacity = 100000000
+agent_site.channels.ch_site-adPlayv1.checkpointDir = /data/tmp/flume/checkpoint_site-adPlayv1
+agent_site.channels.ch_site-adPlayv1.dataDirs = /data/tmp/flume/data_site-adPlayv1
+
+
+#define source and sink match channel
+agent_site.sources.src_site-adPlayv1.channels = ch_site-adPlayv1
+agent_site.sinks.sink_site-adPlayv1.channel = ch_site-adPlayv1
+
+#---------------site-adClickv1---------------4
+#define source
+agent_site.sources.src_site-adClickv1.type = org.apache.flume.source.kafka.KafkaSource
+agent_site.sources.src_site-adClickv1.zookeeperConnect = slave0:2181,slave1:2181,slave2:2181
+agent_site.sources.src_site-adClickv1.topic = site-adClickv1
+agent_site.sources.src_site-adClickv1.batchSize = 1000
+agent_site.sources.src_site-adClickv1.groupId = group_site-adClickv1
+
+#define sink
+agent_site.sinks.sink_site-adClickv1.type = hdfs
+agent_site.sinks.sink_site-adClickv1.hdfs.writeFormat = Text
+agent_site.sinks.sink_site-adClickv1.hdfs.fileType = DataStream
+agent_site.sinks.sink_site-adClickv1.hdfs.filePrefix =flume
+agent_site.sinks.sink_site-adClickv1.hdfs.useLocalTimeStamp = true
+agent_site.sinks.sink_site-adClickv1.hdfs.path = hdfs://master:8020/logs_origin/site/site-adClickv1/%Y%m%d
+agent_site.sinks.sink_site-adClickv1.hdfs.rollCount=0
+agent_site.sinks.sink_site-adClickv1.hdfs.rollSize=512000000
+agent_site.sinks.sink_site-adClickv1.hdfs.rollInterval=600
+agent_site.sinks.sink_site-adClickv1.hdfs.batchSize=1000
+agent_site.sinks.sink_site-adClickv1.hdfs.idleTimeout=10000
+agent_site.sinks.sink_site-adClickv1.hdfs.callTimeout=10000
+
+#define channel
+agent_site.channels.ch_site-adClickv1.type = file
+agent_site.channels.ch_site-adClickv1.transactionCapacity = 10000
+agent_site.channels.ch_site-adClickv1.capacity = 100000000
+agent_site.channels.ch_site-adClickv1.checkpointDir = /data/tmp/flume/checkpoint_site-adClickv1
+agent_site.channels.ch_site-adClickv1.dataDirs = /data/tmp/flume/data_site-adClickv1
+
+
+#define source and sink match channel
+agent_site.sources.src_site-adClickv1.channels = ch_site-adClickv1
+agent_site.sinks.sink_site-adClickv1.channel = ch_site-adClickv1
+
+#---------------site-adMasterv1---------------5
+#define source
+agent_site.sources.src_site-adMasterv1.type = org.apache.flume.source.kafka.KafkaSource
+agent_site.sources.src_site-adMasterv1.zookeeperConnect = slave0:2181,slave1:2181,slave2:2181
+agent_site.sources.src_site-adMasterv1.topic = site-adMasterv1
+agent_site.sources.src_site-adMasterv1.batchSize = 1000
+agent_site.sources.src_site-adMasterv1.groupId = group_site-adMasterv1
+
+#define sink
+agent_site.sinks.sink_site-adMasterv1.type = hdfs
+agent_site.sinks.sink_site-adMasterv1.hdfs.writeFormat = Text
+agent_site.sinks.sink_site-adMasterv1.hdfs.fileType = DataStream
+agent_site.sinks.sink_site-adMasterv1.hdfs.filePrefix =flume
+agent_site.sinks.sink_site-adMasterv1.hdfs.useLocalTimeStamp = true
+agent_site.sinks.sink_site-adMasterv1.hdfs.path = hdfs://master:8020/logs_origin/site/site-adMasterv1/%Y%m%d
+agent_site.sinks.sink_site-adMasterv1.hdfs.rollCount=0
+agent_site.sinks.sink_site-adMasterv1.hdfs.rollSize=512000000
+agent_site.sinks.sink_site-adMasterv1.hdfs.rollInterval=600
+agent_site.sinks.sink_site-adMasterv1.hdfs.batchSize=1000
+agent_site.sinks.sink_site-adMasterv1.hdfs.idleTimeout=10000
+agent_site.sinks.sink_site-adMasterv1.hdfs.callTimeout=10000
+
+#define channel
+agent_site.channels.ch_site-adMasterv1.type = file
+agent_site.channels.ch_site-adMasterv1.transactionCapacity = 10000
+agent_site.channels.ch_site-adMasterv1.capacity = 100000000
+agent_site.channels.ch_site-adMasterv1.checkpointDir = /data/tmp/flume/checkpoint_site-adMasterv1
+agent_site.channels.ch_site-adMasterv1.dataDirs = /data/tmp/flume/data_site-adMasterv1
+
+
+#define source and sink match channel
+agent_site.sources.src_site-adMasterv1.channels = ch_site-adMasterv1
+agent_site.sinks.sink_site-adMasterv1.channel = ch_site-adMasterv1
+
+#---------------site-adMasterv2---------------6
+#define source
+agent_site.sources.src_site-adMasterv2.type = org.apache.flume.source.kafka.KafkaSource
+agent_site.sources.src_site-adMasterv2.zookeeperConnect = slave0:2181,slave1:2181,slave2:2181
+agent_site.sources.src_site-adMasterv2.topic = site-adMasterv2
+agent_site.sources.src_site-adMasterv2.batchSize = 1000
+agent_site.sources.src_site-adMasterv2.groupId = group_site-adMasterv2
+
+#define sink
+agent_site.sinks.sink_site-adMasterv2.type = hdfs
+agent_site.sinks.sink_site-adMasterv2.hdfs.writeFormat = Text
+agent_site.sinks.sink_site-adMasterv2.hdfs.fileType = DataStream
+agent_site.sinks.sink_site-adMasterv2.hdfs.filePrefix =flume
+agent_site.sinks.sink_site-adMasterv2.hdfs.useLocalTimeStamp = true
+agent_site.sinks.sink_site-adMasterv2.hdfs.path = hdfs://master:8020/logs_origin/site/site-adMasterv2/%Y%m%d
+agent_site.sinks.sink_site-adMasterv2.hdfs.rollCount=0
+agent_site.sinks.sink_site-adMasterv2.hdfs.rollSize=512000000
+agent_site.sinks.sink_site-adMasterv2.hdfs.rollInterval=600
+agent_site.sinks.sink_site-adMasterv2.hdfs.batchSize=1000
+agent_site.sinks.sink_site-adMasterv2.hdfs.idleTimeout=10000
+agent_site.sinks.sink_site-adMasterv2.hdfs.callTimeout=10000
+
+#define channel
+agent_site.channels.ch_site-adMasterv2.type = file
+agent_site.channels.ch_site-adMasterv2.transactionCapacity = 10000
+agent_site.channels.ch_site-adMasterv2.capacity = 100000000
+agent_site.channels.ch_site-adMasterv2.checkpointDir = /data/tmp/flume/checkpoint_site-adMasterv2
+agent_site.channels.ch_site-adMasterv2.dataDirs = /data/tmp/flume/data_site-adMasterv2
+
+
+#define source and sink match channel
+agent_site.sources.src_site-adMasterv2.channels = ch_site-adMasterv2
+agent_site.sinks.sink_site-adMasterv2.channel = ch_site-adMasterv2
+
+#---------------site-wxConcatFollowv3---------------7
+#define source
+agent_site.sources.src_site-wxConcatFollowv3.type = org.apache.flume.source.kafka.KafkaSource
+agent_site.sources.src_site-wxConcatFollowv3.zookeeperConnect = slave0:2181,slave1:2181,slave2:2181
+agent_site.sources.src_site-wxConcatFollowv3.topic = site-wxConcatFollowv3
+agent_site.sources.src_site-wxConcatFollowv3.batchSize = 1000
+agent_site.sources.src_site-wxConcatFollowv3.groupId = group_site-wxConcatFollowv3
+
+#define sink
+agent_site.sinks.sink_site-wxConcatFollowv3.type = hdfs
+agent_site.sinks.sink_site-wxConcatFollowv3.hdfs.writeFormat = Text
+agent_site.sinks.sink_site-wxConcatFollowv3.hdfs.fileType = DataStream
+agent_site.sinks.sink_site-wxConcatFollowv3.hdfs.filePrefix =flume
+agent_site.sinks.sink_site-wxConcatFollowv3.hdfs.useLocalTimeStamp = true
+agent_site.sinks.sink_site-wxConcatFollowv3.hdfs.path = hdfs://master:8020/logs_origin/site/site-wxConcatFollowv3/%Y%m%d
+agent_site.sinks.sink_site-wxConcatFollowv3.hdfs.rollCount=0
+agent_site.sinks.sink_site-wxConcatFollowv3.hdfs.rollSize=512000000
+agent_site.sinks.sink_site-wxConcatFollowv3.hdfs.rollInterval=600
+agent_site.sinks.sink_site-wxConcatFollowv3.hdfs.batchSize=1000
+agent_site.sinks.sink_site-wxConcatFollowv3.hdfs.idleTimeout=10000
+agent_site.sinks.sink_site-wxConcatFollowv3.hdfs.callTimeout=10000
+
+#define channel
+agent_site.channels.ch_site-wxConcatFollowv3.type = file
+agent_site.channels.ch_site-wxConcatFollowv3.transactionCapacity = 10000
+agent_site.channels.ch_site-wxConcatFollowv3.capacity = 100000000
+agent_site.channels.ch_site-wxConcatFollowv3.checkpointDir = /data/tmp/flume/checkpoint_site-wxConcatFollowv3
+agent_site.channels.ch_site-wxConcatFollowv3.dataDirs = /data/tmp/flume/data_site-wxConcatFollowv3
+
+
+#define source and sink match channel
+agent_site.sources.src_site-wxConcatFollowv3.channels = ch_site-wxConcatFollowv3
+agent_site.sinks.sink_site-wxConcatFollowv3.channel = ch_site-wxConcatFollowv3
+
+#---------------site-wxConcatFollowMACv3---------------8
+#define source
+agent_site.sources.src_site-wxConcatFollowMACv3.type = org.apache.flume.source.kafka.KafkaSource
+agent_site.sources.src_site-wxConcatFollowMACv3.zookeeperConnect = slave0:2181,slave1:2181,slave2:2181
+agent_site.sources.src_site-wxConcatFollowMACv3.topic = site-wxConcatFollowMACv3
+agent_site.sources.src_site-wxConcatFollowMACv3.batchSize = 1000
+agent_site.sources.src_site-wxConcatFollowMACv3.groupId = group_site-wxConcatFollowMACv3
+
+#define sink
+agent_site.sinks.sink_site-wxConcatFollowMACv3.type = hdfs
+agent_site.sinks.sink_site-wxConcatFollowMACv3.hdfs.writeFormat = Text
+agent_site.sinks.sink_site-wxConcatFollowMACv3.hdfs.fileType = DataStream
+agent_site.sinks.sink_site-wxConcatFollowMACv3.hdfs.filePrefix =flume
+agent_site.sinks.sink_site-wxConcatFollowMACv3.hdfs.useLocalTimeStamp = true
+agent_site.sinks.sink_site-wxConcatFollowMACv3.hdfs.path = hdfs://master:8020/logs_origin/site/site-wxConcatFollowMACv3/%Y%m%d
+agent_site.sinks.sink_site-wxConcatFollowMACv3.hdfs.rollCount=0
+agent_site.sinks.sink_site-wxConcatFollowMACv3.hdfs.rollSize=512000000
+agent_site.sinks.sink_site-wxConcatFollowMACv3.hdfs.rollInterval=600
+agent_site.sinks.sink_site-wxConcatFollowMACv3.hdfs.batchSize=1000
+agent_site.sinks.sink_site-wxConcatFollowMACv3.hdfs.idleTimeout=10000
+agent_site.sinks.sink_site-wxConcatFollowMACv3.hdfs.callTimeout=10000
+
+#define channel
+agent_site.channels.ch_site-wxConcatFollowMACv3.type = file
+agent_site.channels.ch_site-wxConcatFollowMACv3.transactionCapacity = 10000
+agent_site.channels.ch_site-wxConcatFollowMACv3.capacity = 100000000
+agent_site.channels.ch_site-wxConcatFollowMACv3.checkpointDir = /data/tmp/flume/checkpoint_site-wxConcatFollowMACv3
+agent_site.channels.ch_site-wxConcatFollowMACv3.dataDirs = /data/tmp/flume/data_site-wxConcatFollowMACv3
+
+
+#define source and sink match channel
+agent_site.sources.src_site-wxConcatFollowMACv3.channels = ch_site-wxConcatFollowMACv3
+agent_site.sinks.sink_site-wxConcatFollowMACv3.channel = ch_site-wxConcatFollowMACv3

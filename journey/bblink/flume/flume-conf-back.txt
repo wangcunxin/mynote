@@ -1,0 +1,104 @@
+
+#back-portal-loginlog back-portal-authorizedlog back-wechatNewFanDetails
+
+#define agent_back
+agent_back.sources  = src_back-portal-loginlog src_back-portal-authorizedlog src_back-wechatNewFanDetails
+agent_back.channels = ch_back-portal-loginlog ch_back-portal-authorizedlog ch_back-wechatNewFanDetails
+agent_back.sinks    = sink_back-portal-loginlog sink_back-portal-authorizedlog sink_back-wechatNewFanDetails
+
+#---------------back-portal-loginlog---------------1
+#define source
+agent_back.sources.src_back-portal-loginlog.type = org.apache.flume.source.kafka.KafkaSource
+agent_back.sources.src_back-portal-loginlog.zookeeperConnect = slave0:2181,slave1:2181,slave2:2181
+agent_back.sources.src_back-portal-loginlog.topic = back-portal-loginlog
+agent_back.sources.src_back-portal-loginlog.batchSize = 1000
+agent_back.sources.src_back-portal-loginlog.groupId = group_back-portal-loginlog
+
+#define sink
+agent_back.sinks.sink_back-portal-loginlog.type = hdfs
+agent_back.sinks.sink_back-portal-loginlog.hdfs.writeFormat = Text
+agent_back.sinks.sink_back-portal-loginlog.hdfs.fileType = DataStream
+agent_back.sinks.sink_back-portal-loginlog.hdfs.filePrefix =flume
+agent_back.sinks.sink_back-portal-loginlog.hdfs.useLocalTimeStamp = true
+agent_back.sinks.sink_back-portal-loginlog.hdfs.path = hdfs://master:8020/logs_origin/back/back-portal-loginlog/%Y%m%d
+agent_back.sinks.sink_back-portal-loginlog.hdfs.rollCount=0
+agent_back.sinks.sink_back-portal-loginlog.hdfs.rollSize=512000000
+agent_back.sinks.sink_back-portal-loginlog.hdfs.rollInterval=600
+agent_back.sinks.sink_back-portal-loginlog.hdfs.batchSize=1000
+agent_back.sinks.sink_back-portal-loginlog.hdfs.idleTimeout=10000
+agent_back.sinks.sink_back-portal-loginlog.hdfs.callTimeout=10000
+
+#define channel
+agent_back.channels.ch_back-portal-loginlog.type = file
+agent_back.channels.ch_back-portal-loginlog.checkpointDir = /data/tmp/flume/checkpoint_back-portal-loginlog
+agent_back.channels.ch_back-portal-loginlog.dataDirs = /data/tmp/flume/data_back-portal-loginlog
+
+
+#define source and sink match channel
+agent_back.sources.src_back-portal-loginlog.channels = ch_back-portal-loginlog
+agent_back.sinks.sink_back-portal-loginlog.channel = ch_back-portal-loginlog
+
+
+#---------------back-portal-authorizedlog---------------2
+#define source
+agent_back.sources.src_back-portal-authorizedlog.type = org.apache.flume.source.kafka.KafkaSource
+agent_back.sources.src_back-portal-authorizedlog.zookeeperConnect = slave0:2181,slave1:2181,slave2:2181
+agent_back.sources.src_back-portal-authorizedlog.topic = back-portal-authorizedlog
+agent_back.sources.src_back-portal-authorizedlog.batchSize = 1000
+agent_back.sources.src_back-portal-authorizedlog.groupId = group_back-portal-authorizedlog
+
+#define sink
+agent_back.sinks.sink_back-portal-authorizedlog.type = hdfs
+agent_back.sinks.sink_back-portal-authorizedlog.hdfs.writeFormat = Text
+agent_back.sinks.sink_back-portal-authorizedlog.hdfs.fileType = DataStream
+agent_back.sinks.sink_back-portal-authorizedlog.hdfs.filePrefix =flume
+agent_back.sinks.sink_back-portal-authorizedlog.hdfs.useLocalTimeStamp = true
+agent_back.sinks.sink_back-portal-authorizedlog.hdfs.path = hdfs://master:8020/logs_origin/back/back-portal-authorizedlog/%Y%m%d
+agent_back.sinks.sink_back-portal-authorizedlog.hdfs.rollCount=0
+agent_back.sinks.sink_back-portal-authorizedlog.hdfs.rollSize=512000000
+agent_back.sinks.sink_back-portal-authorizedlog.hdfs.rollInterval=600
+agent_back.sinks.sink_back-portal-authorizedlog.hdfs.batchSize=1000
+agent_back.sinks.sink_back-portal-authorizedlog.hdfs.idleTimeout=10000
+agent_back.sinks.sink_back-portal-authorizedlog.hdfs.callTimeout=10000
+
+#define channel
+agent_back.channels.ch_back-portal-authorizedlog.type = file
+agent_back.channels.ch_back-portal-authorizedlog.checkpointDir = /data/tmp/flume/checkpoint_back-portal-authorizedlog
+agent_back.channels.ch_back-portal-authorizedlog.dataDirs = /data/tmp/flume/data_back-portal-authorizedlog
+
+
+#define source and sink match channel
+agent_back.sources.src_back-portal-authorizedlog.channels = ch_back-portal-authorizedlog
+agent_back.sinks.sink_back-portal-authorizedlog.channel = ch_back-portal-authorizedlog
+
+#---------------back-wechatNewFanDetails---------------3
+#define source
+agent_back.sources.src_back-wechatNewFanDetails.type = org.apache.flume.source.kafka.KafkaSource
+agent_back.sources.src_back-wechatNewFanDetails.zookeeperConnect = slave0:2181,slave1:2181,slave2:2181
+agent_back.sources.src_back-wechatNewFanDetails.topic = back-wechatNewFanDetails
+agent_back.sources.src_back-wechatNewFanDetails.batchSize = 1000
+agent_back.sources.src_back-wechatNewFanDetails.groupId = group_back-wechatNewFanDetails
+
+#define sink
+agent_back.sinks.sink_back-wechatNewFanDetails.type = hdfs
+agent_back.sinks.sink_back-wechatNewFanDetails.hdfs.writeFormat = Text
+agent_back.sinks.sink_back-wechatNewFanDetails.hdfs.fileType = DataStream
+agent_back.sinks.sink_back-wechatNewFanDetails.hdfs.filePrefix =flume
+agent_back.sinks.sink_back-wechatNewFanDetails.hdfs.useLocalTimeStamp = true
+agent_back.sinks.sink_back-wechatNewFanDetails.hdfs.path = hdfs://master:8020/logs_origin/back/back-wechatNewFanDetails/%Y%m%d
+agent_back.sinks.sink_back-wechatNewFanDetails.hdfs.rollCount=0
+agent_back.sinks.sink_back-wechatNewFanDetails.hdfs.rollSize=512000000
+agent_back.sinks.sink_back-wechatNewFanDetails.hdfs.rollInterval=600
+agent_back.sinks.sink_back-wechatNewFanDetails.hdfs.batchSize=1000
+agent_back.sinks.sink_back-wechatNewFanDetails.hdfs.idleTimeout=10000
+agent_back.sinks.sink_back-wechatNewFanDetails.hdfs.callTimeout=10000
+
+#define channel
+agent_back.channels.ch_back-wechatNewFanDetails.type = file
+agent_back.channels.ch_back-wechatNewFanDetails.checkpointDir = /data/tmp/flume/checkpoint_back-wechatNewFanDetails
+agent_back.channels.ch_back-wechatNewFanDetails.dataDirs = /data/tmp/flume/data_back-wechatNewFanDetails
+
+
+#define source and sink match channel
+agent_back.sources.src_back-wechatNewFanDetails.channels = ch_back-wechatNewFanDetails
+agent_back.sinks.sink_back-wechatNewFanDetails.channel = ch_back-wechatNewFanDetails

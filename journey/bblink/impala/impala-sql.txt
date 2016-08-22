@@ -1,0 +1,56 @@
+create database db_test;
+use db_test;
+drop table tb_test;
+
+DESCRIBE tb_test;
+DESCRIBE FORMATTED tb_test;
+SHOW CREATE table tb_test;
+SHOW partitions tb_test;
+
+# create tab
+DROP TABLE IF EXISTS tb_test;
+CREATE external TABLE tb_test(
+  pid string,
+  guuid int
+)
+partitioned by (dat string)
+ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t'
+LOCATION '/impala/tbs/site/site-sitePVv3';
+
+DROP TABLE IF EXISTS tb_test;
+CREATE external TABLE tb_test(...)
+partitioned by (dat string)
+stored as parquet 
+LOCATION '/impala/impala/site/site-sitePVv3';
+
+
+alter table site_sitepvv3 add if not exists partition(dat='20151105')
+alter table site_sitepvv3 drop if exists partition(dat='20151105')
+
+
+load data inpath 'hdfs://cdh-master:8020/logs_origin/site/site-sitePVv3/20151111' overwrite into table txtdb.site_sitePVv3 partition(dat = '20151111')
+
+insert overwrite parquetdb.site_sitePVv3 partition(dat ='20151111') select pid,guuid from txtdb.site_sitePVv3 where dat ='20151111';
+# depressed
+insert into tb_test partition(dat ='20151010') values(1,'mickey');
+
+
+#week
+select dayofweek(from_unixtime(cast(substr("1447160729931",1,10) as BIGINT),"yyyy-MM-dd"))
+
+select b.hosid,b.hosname,dayofweek(from_unixtime(cast((a.login_time/1000+8*3600) as BIGINT),"yyyy-MM-dd"))-1 as week,
+cast(count(distinct a.mac)/5 as int) as uv
+ from back_portal_loginlog a,db_impala.gwhos b 
+ where a.dat<='20151110' and  a.dat>='20151007'
+ and a.gw_id=b.gwid
+ group by  b.hosid,b.hosname,dayofweek(from_unixtime(cast((a.login_time/1000+8*3600) as BIGINT),"yyyy-MM-dd"))-1
+ order by  b.hosid,dayofweek(from_unixtime(cast((a.login_time/1000+8*3600) as BIGINT),"yyyy-MM-dd"))-1;
+
+#select
+select count(*) from site_sitepvv3 where url like "%bblink.cn/wechatforward/%" and dat='20151027'
+
+
+select day,weekofyear(from_unixtime(unix_timestamp(day,'yyyyMMdd'), 'yyyy-MM-dd'))  as week from txtdb.classify_user_login
+
+
+

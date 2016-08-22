@@ -1,0 +1,41 @@
+#profile
+export JAVA_HOME=/usr/java/jdk
+export SCALA_HOME=/opt/cloud/scala-2.10.5
+export FLUME_HOME=/opt/cloud/apache-flume-1.6.0-bin
+export SPARK_HOME=/opt/cloud/spark-1.5.2-bin-hadoop2.6
+export KAFKA_HOME=/opt/cloud/kafka
+export PATH=$PATH:$JAVA_HOME/bin:$SCALA_HOME/bin:$FLUME_HOME/bin:$SPARK_HOME/bin:$KAFKA_HOME/bin
+
+# spark-env
+export SPARK_DAEMON_JAVA_OPTS="-Dspark.deploy.recoveryMode=ZOOKEEPER -Dspark.deploy.zookeeper.url=cdh-slave0:2181,cdh-slave1:2181,cdh-slave2:2181 -Dspark.deploy.zookeeper.dir=/tmp/zk"
+
+export SPARK_MASTER_PORT=7077
+export SPARK_WORKER_INSTANCES=2
+export SPARK_WORKER_CORES=4
+export SPARK_WORKER_MEMORY=4g
+
+
+#spark-default
+
+spark.master                     spark://cdh-master:7077
+spark.serializer                 org.apache.spark.serializer.KryoSerializer
+spark.eventLog.enabled           true
+spark.eventLog.dir               hdfs://cdh-master:8020/spark_eventlogs
+spark.executor.extraJavaOptions  -XX:+PrintGCDetails -Dkey=value -Dnumbers="one two three"
+spark.shuffle.consolidateFiles true
+
+
+
+
+高可用配置：
+spark-env.sh
+
+export JAVA_HOME=/opt/jdk
+export SPARK_DAEMON_JAVA_OPTS="-Dspark.deploy.recoveryMode=ZOOKEEPER -Dspark.deploy.zookeeper.url=zk01:2181,zk02:2181,zk03:2181 -Dspark.deploy.zookeeper.dir=/home/hadoop/tmp/zk"
+
+--master spark://HDP125:7077,HDP126:7077
+
+启动
+1.zk /opt/zookeeper/bin/zkServer.sh start
+2.在active上启动start-all.sh
+3.在standby上启动start-master.sh

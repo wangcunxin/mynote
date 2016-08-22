@@ -1,0 +1,203 @@
+
+#wifi-apinfo wifi-useronlineinfo wifi-usernetlog wifi-userapplog wifi-userdetectedinfo wifi-acdeviceinfo
+
+#define agent_wifi
+agent_wifi.sources  = src_wifi-apinfo src_wifi-useronlineinfo src_wifi-usernetlog src_wifi-userapplog src_wifi-userdetectedinfo src_wifi-acdeviceinfo
+agent_wifi.channels = ch_wifi-apinfo ch_wifi-useronlineinfo ch_wifi-usernetlog ch_wifi-userapplog ch_wifi-userdetectedinfo ch_wifi-acdeviceinfo
+agent_wifi.sinks    = sink_wifi-apinfo sink_wifi-useronlineinfo sink_wifi-usernetlog sink_wifi-userapplog sink_wifi-userdetectedinfo sink_wifi-acdeviceinfo
+
+#---------------wifi-apinfo---------------1
+#define source
+agent_wifi.sources.src_wifi-apinfo.type = org.apache.flume.source.kafka.KafkaSource
+agent_wifi.sources.src_wifi-apinfo.zookeeperConnect = zookeeper-01-sh:2181,zookeeper-02-sh:2181,zookeeper-03-sh:2181
+agent_wifi.sources.src_wifi-apinfo.topic = wifi-apinfo
+agent_wifi.sources.src_wifi-apinfo.batchSize = 1000
+agent_wifi.sources.src_wifi-apinfo.groupId = group_wifi-apinfo
+
+#define sink
+agent_wifi.sinks.sink_wifi-apinfo.type = hdfs
+agent_wifi.sinks.sink_wifi-apinfo.hdfs.writeFormat = Text
+agent_wifi.sinks.sink_wifi-apinfo.hdfs.fileType = DataStream
+agent_wifi.sinks.sink_wifi-apinfo.hdfs.filePrefix =flume
+agent_wifi.sinks.sink_wifi-apinfo.hdfs.useLocalTimeStamp = true
+agent_wifi.sinks.sink_wifi-apinfo.hdfs.path = hdfs://master:8020/logs_origin/wifi/wifi-apinfo/%Y%m%d
+agent_wifi.sinks.sink_wifi-apinfo.hdfs.rollCount=0
+agent_wifi.sinks.sink_wifi-apinfo.hdfs.rollSize=512000000
+agent_wifi.sinks.sink_wifi-apinfo.hdfs.rollInterval=600
+agent_wifi.sinks.sink_wifi-apinfo.hdfs.batchSize=1000
+agent_wifi.sinks.sink_wifi-apinfo.hdfs.idleTimeout=10000
+agent_wifi.sinks.sink_wifi-apinfo.hdfs.callTimeout=10000
+
+#define channel
+agent_wifi.channels.ch_wifi-apinfo.type = file
+agent_wifi.channels.ch_wifi-apinfo.checkpointDir = /data/tmp/flume/checkpoint_wifi-apinfo
+agent_wifi.channels.ch_wifi-apinfo.dataDirs = /data/tmp/flume/data_wifi-apinfo
+
+
+#define source and sink match channel
+agent_wifi.sources.src_wifi-apinfo.channels = ch_wifi-apinfo
+agent_wifi.sinks.sink_wifi-apinfo.channel = ch_wifi-apinfo
+
+
+#---------------wifi-useronlineinfo---------------2
+#define source
+agent_wifi.sources.src_wifi-useronlineinfo.type = org.apache.flume.source.kafka.KafkaSource
+agent_wifi.sources.src_wifi-useronlineinfo.zookeeperConnect = zookeeper-01-sh:2181,zookeeper-02-sh:2181,zookeeper-03-sh:2181
+agent_wifi.sources.src_wifi-useronlineinfo.topic = wifi-useronlineinfo
+agent_wifi.sources.src_wifi-useronlineinfo.batchSize = 1000
+agent_wifi.sources.src_wifi-useronlineinfo.groupId = group_wifi-useronlineinfo
+
+#define sink
+agent_wifi.sinks.sink_wifi-useronlineinfo.type = hdfs
+agent_wifi.sinks.sink_wifi-useronlineinfo.hdfs.writeFormat = Text
+agent_wifi.sinks.sink_wifi-useronlineinfo.hdfs.fileType = DataStream
+agent_wifi.sinks.sink_wifi-useronlineinfo.hdfs.filePrefix =flume
+agent_wifi.sinks.sink_wifi-useronlineinfo.hdfs.useLocalTimeStamp = true
+agent_wifi.sinks.sink_wifi-useronlineinfo.hdfs.path = hdfs://master:8020/logs_origin/wifi/wifi-useronlineinfo/%Y%m%d
+agent_wifi.sinks.sink_wifi-useronlineinfo.hdfs.rollCount=0
+agent_wifi.sinks.sink_wifi-useronlineinfo.hdfs.rollSize=512000000
+agent_wifi.sinks.sink_wifi-useronlineinfo.hdfs.rollInterval=600
+agent_wifi.sinks.sink_wifi-useronlineinfo.hdfs.batchSize=1000
+agent_wifi.sinks.sink_wifi-useronlineinfo.hdfs.idleTimeout=10000
+agent_wifi.sinks.sink_wifi-useronlineinfo.hdfs.callTimeout=10000
+
+#define channel
+agent_wifi.channels.ch_wifi-useronlineinfo.type = file
+agent_wifi.channels.ch_wifi-useronlineinfo.checkpointDir = /data/tmp/flume/checkpoint_wifi-useronlineinfo
+agent_wifi.channels.ch_wifi-useronlineinfo.dataDirs = /data/tmp/flume/data_wifi-useronlineinfo
+
+
+#define source and sink match channel
+agent_wifi.sources.src_wifi-useronlineinfo.channels = ch_wifi-useronlineinfo
+agent_wifi.sinks.sink_wifi-useronlineinfo.channel = ch_wifi-useronlineinfo
+
+#---------------wifi-usernetlog---------------3
+#define source
+agent_wifi.sources.src_wifi-usernetlog.type = org.apache.flume.source.kafka.KafkaSource
+agent_wifi.sources.src_wifi-usernetlog.zookeeperConnect = zookeeper-01-sh:2181,zookeeper-02-sh:2181,zookeeper-03-sh:2181
+agent_wifi.sources.src_wifi-usernetlog.topic = wifi-usernetlog
+agent_wifi.sources.src_wifi-usernetlog.batchSize = 1000
+agent_wifi.sources.src_wifi-usernetlog.groupId = group_wifi-usernetlog
+
+#define sink
+agent_wifi.sinks.sink_wifi-usernetlog.type = hdfs
+agent_wifi.sinks.sink_wifi-usernetlog.hdfs.writeFormat = Text
+agent_wifi.sinks.sink_wifi-usernetlog.hdfs.fileType = DataStream
+agent_wifi.sinks.sink_wifi-usernetlog.hdfs.filePrefix =flume
+agent_wifi.sinks.sink_wifi-usernetlog.hdfs.useLocalTimeStamp = true
+agent_wifi.sinks.sink_wifi-usernetlog.hdfs.path = hdfs://master:8020/logs_origin/wifi/wifi-usernetlog/%Y%m%d
+agent_wifi.sinks.sink_wifi-usernetlog.hdfs.rollCount=0
+agent_wifi.sinks.sink_wifi-usernetlog.hdfs.rollSize=512000000
+agent_wifi.sinks.sink_wifi-usernetlog.hdfs.rollInterval=600
+agent_wifi.sinks.sink_wifi-usernetlog.hdfs.batchSize=1000
+agent_wifi.sinks.sink_wifi-usernetlog.hdfs.idleTimeout=10000
+agent_wifi.sinks.sink_wifi-usernetlog.hdfs.callTimeout=10000
+
+#define channel
+agent_wifi.channels.ch_wifi-usernetlog.type = file
+agent_wifi.channels.ch_wifi-usernetlog.checkpointDir = /data/tmp/flume/checkpoint_wifi-usernetlog
+agent_wifi.channels.ch_wifi-usernetlog.dataDirs = /data/tmp/flume/data_wifi-usernetlog
+
+
+#define source and sink match channel
+agent_wifi.sources.src_wifi-usernetlog.channels = ch_wifi-usernetlog
+agent_wifi.sinks.sink_wifi-usernetlog.channel = ch_wifi-usernetlog
+
+#---------------wifi-userapplog---------------4
+#define source
+agent_wifi.sources.src_wifi-userapplog.type = org.apache.flume.source.kafka.KafkaSource
+agent_wifi.sources.src_wifi-userapplog.zookeeperConnect = zookeeper-01-sh:2181,zookeeper-02-sh:2181,zookeeper-03-sh:2181
+agent_wifi.sources.src_wifi-userapplog.topic = wifi-userapplog
+agent_wifi.sources.src_wifi-userapplog.batchSize = 1000
+agent_wifi.sources.src_wifi-userapplog.groupId = group_wifi-userapplog
+
+#define sink
+agent_wifi.sinks.sink_wifi-userapplog.type = hdfs
+agent_wifi.sinks.sink_wifi-userapplog.hdfs.writeFormat = Text
+agent_wifi.sinks.sink_wifi-userapplog.hdfs.fileType = DataStream
+agent_wifi.sinks.sink_wifi-userapplog.hdfs.filePrefix =flume
+agent_wifi.sinks.sink_wifi-userapplog.hdfs.useLocalTimeStamp = true
+agent_wifi.sinks.sink_wifi-userapplog.hdfs.path = hdfs://master:8020/logs_origin/wifi/wifi-userapplog/%Y%m%d
+agent_wifi.sinks.sink_wifi-userapplog.hdfs.rollCount=0
+agent_wifi.sinks.sink_wifi-userapplog.hdfs.rollSize=512000000
+agent_wifi.sinks.sink_wifi-userapplog.hdfs.rollInterval=600
+agent_wifi.sinks.sink_wifi-userapplog.hdfs.batchSize=1000
+agent_wifi.sinks.sink_wifi-userapplog.hdfs.idleTimeout=10000
+agent_wifi.sinks.sink_wifi-userapplog.hdfs.callTimeout=10000
+
+#define channel
+agent_wifi.channels.ch_wifi-userapplog.type = file
+agent_wifi.channels.ch_wifi-userapplog.checkpointDir = /data/tmp/flume/checkpoint_wifi-userapplog
+agent_wifi.channels.ch_wifi-userapplog.dataDirs = /data/tmp/flume/data_wifi-userapplog
+
+
+#define source and sink match channel
+agent_wifi.sources.src_wifi-userapplog.channels = ch_wifi-userapplog
+agent_wifi.sinks.sink_wifi-userapplog.channel = ch_wifi-userapplog
+
+
+#---------------wifi-userdetectedinfo---------------5
+#define source
+agent_wifi.sources.src_wifi-userdetectedinfo.type = org.apache.flume.source.kafka.KafkaSource
+agent_wifi.sources.src_wifi-userdetectedinfo.zookeeperConnect = zookeeper-01-sh:2181,zookeeper-02-sh:2181,zookeeper-03-sh:2181
+agent_wifi.sources.src_wifi-userdetectedinfo.topic = wifi-userdetectedinfo
+agent_wifi.sources.src_wifi-userdetectedinfo.batchSize = 1000
+agent_wifi.sources.src_wifi-userdetectedinfo.groupId = group_wifi-userdetectedinfo
+
+#define sink
+agent_wifi.sinks.sink_wifi-userdetectedinfo.type = hdfs
+agent_wifi.sinks.sink_wifi-userdetectedinfo.hdfs.writeFormat = Text
+agent_wifi.sinks.sink_wifi-userdetectedinfo.hdfs.fileType = DataStream
+agent_wifi.sinks.sink_wifi-userdetectedinfo.hdfs.filePrefix =flume
+agent_wifi.sinks.sink_wifi-userdetectedinfo.hdfs.useLocalTimeStamp = true
+agent_wifi.sinks.sink_wifi-userdetectedinfo.hdfs.path = hdfs://master:8020/logs_origin/wifi/wifi-userdetectedinfo/%Y%m%d
+agent_wifi.sinks.sink_wifi-userdetectedinfo.hdfs.rollCount=0
+agent_wifi.sinks.sink_wifi-userdetectedinfo.hdfs.rollSize=512000000
+agent_wifi.sinks.sink_wifi-userdetectedinfo.hdfs.rollInterval=600
+agent_wifi.sinks.sink_wifi-userdetectedinfo.hdfs.batchSize=1000
+agent_wifi.sinks.sink_wifi-userdetectedinfo.hdfs.idleTimeout=10000
+agent_wifi.sinks.sink_wifi-userdetectedinfo.hdfs.callTimeout=10000
+
+#define channel
+agent_wifi.channels.ch_wifi-userdetectedinfo.type = file
+agent_wifi.channels.ch_wifi-userdetectedinfo.checkpointDir = /data/tmp/flume/checkpoint_wifi-userdetectedinfo
+agent_wifi.channels.ch_wifi-userdetectedinfo.dataDirs = /data/tmp/flume/data_wifi-userdetectedinfo
+
+
+#define source and sink match channel
+agent_wifi.sources.src_wifi-userdetectedinfo.channels = ch_wifi-userdetectedinfo
+agent_wifi.sinks.sink_wifi-userdetectedinfo.channel = ch_wifi-userdetectedinfo
+
+
+#---------------wifi-acdeviceinfo---------------6
+#define source
+agent_wifi.sources.src_wifi-acdeviceinfo.type = org.apache.flume.source.kafka.KafkaSource
+agent_wifi.sources.src_wifi-acdeviceinfo.zookeeperConnect = zookeeper-01-sh:2181,zookeeper-02-sh:2181,zookeeper-03-sh:2181
+agent_wifi.sources.src_wifi-acdeviceinfo.topic = wifi-acdeviceinfo
+agent_wifi.sources.src_wifi-acdeviceinfo.batchSize = 1000
+agent_wifi.sources.src_wifi-acdeviceinfo.groupId = group_wifi-acdeviceinfo
+
+#define sink
+agent_wifi.sinks.sink_wifi-acdeviceinfo.type = hdfs
+agent_wifi.sinks.sink_wifi-acdeviceinfo.hdfs.writeFormat = Text
+agent_wifi.sinks.sink_wifi-acdeviceinfo.hdfs.fileType = DataStream
+agent_wifi.sinks.sink_wifi-acdeviceinfo.hdfs.filePrefix =flume
+agent_wifi.sinks.sink_wifi-acdeviceinfo.hdfs.useLocalTimeStamp = true
+agent_wifi.sinks.sink_wifi-acdeviceinfo.hdfs.path = hdfs://master:8020/logs_origin/wifi/wifi-acdeviceinfo/%Y%m%d
+agent_wifi.sinks.sink_wifi-acdeviceinfo.hdfs.rollCount=0
+agent_wifi.sinks.sink_wifi-acdeviceinfo.hdfs.rollSize=512000000
+agent_wifi.sinks.sink_wifi-acdeviceinfo.hdfs.rollInterval=600
+agent_wifi.sinks.sink_wifi-acdeviceinfo.hdfs.batchSize=1000
+agent_wifi.sinks.sink_wifi-acdeviceinfo.hdfs.idleTimeout=10000
+agent_wifi.sinks.sink_wifi-acdeviceinfo.hdfs.callTimeout=10000
+
+#define channel
+agent_wifi.channels.ch_wifi-acdeviceinfo.type = file
+agent_wifi.channels.ch_wifi-acdeviceinfo.checkpointDir = /data/tmp/flume/checkpoint_wifi-acdeviceinfo
+agent_wifi.channels.ch_wifi-acdeviceinfo.dataDirs = /data/tmp/flume/data_wifi-acdeviceinfo
+
+
+#define source and sink match channel
+agent_wifi.sources.src_wifi-acdeviceinfo.channels = ch_wifi-acdeviceinfo
+agent_wifi.sinks.sink_wifi-acdeviceinfo.channel = ch_wifi-acdeviceinfo
+

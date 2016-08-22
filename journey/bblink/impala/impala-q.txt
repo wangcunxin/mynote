@@ -1,0 +1,14 @@
+#!/bin/bash
+ym='201603'
+for d in {09..24}
+do
+ymd=$ym$d
+#echo "$ymd"
+sql="select a.dat,count(distinct upper(a.usermac)) uv from parquetdb.back_portal_loginflowlog a
+where a.dat='$ymd' and upper(a.usermac) not in (select mac from ((select distinct upper(mac) mac
+ from parquetdb.back_portal_loginlog) union (select distinct upper(usermac) mac from parquetdb.b
+ack_portal_loginflowlog where dat<'$ymd')) b ) group by a.dat;"
+#echo $sql
+impala-shell -i slave1 -q "$sql" >> ret.log
+
+done
