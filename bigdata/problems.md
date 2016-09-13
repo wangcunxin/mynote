@@ -1,5 +1,5 @@
 
-1.Í¬²½Ê±¼ä
+1.åŒæ­¥æ—¶é—´
 ntpdate 2.cn.pool.ntp.org
 
 2.
@@ -8,5 +8,27 @@ har://namenode:8020/xxx
 
 3.yum groupinstall -y 'development tools'
 
-4.spark streamingÃ»ÓĞ»º´æoffset£¬Ò»µ©ÖĞ¶Ï£¬Êı¾İ²»Á¬Ğø£¬Éı¼¶²»±ã¡£
-Òò´Ë£¬½«offsetĞ´Èëzk£¬Æô¶¯Ê±¶Á³ö£¬Ïû·ÑÊ±£¬¸üĞÂzkÖĞµÄoffset¡£
+4.spark streamingæ²¡æœ‰ç¼“å­˜offsetï¼Œä¸€æ—¦ä¸­æ–­ï¼Œæ•°æ®ä¸è¿ç»­ï¼Œå‡çº§ä¸ä¾¿ã€‚
+å› æ­¤ï¼Œå°†offsetå†™å…¥zkï¼Œå¯åŠ¨æ—¶è¯»å‡ºï¼Œæ¶ˆè´¹æ—¶ï¼Œæ›´æ–°zkä¸­çš„offsetã€‚
+
+5.defunct process åˆ é™¤åƒµå°¸è¿›ç¨‹
+ps -ef|grep defunct
+hdfs     115285 115279  0 01:00 ?        00:00:00 [rc-cinema.sh] <defunct>
+
+kill -9 pid æ— æ•ˆ
+kill -9 115279<çˆ¶è¿›ç¨‹ppid>
+
+6.java.io.IOException: failed log splitting  ä¸èƒ½æ­£å¸¸å¯åŠ¨hbase master
+hdfs dfs -mv /hbase/WALs/dn4.gewara.cn,60020,1447899619647-splitting /tmp/hbase2/
+
+7.hdfs å¼€å¯å›æ”¶ç«™æœåŠ¡
+/user/ç”¨æˆ·å/.Trash/Current/æ–‡ä»¶ 
+core-site.xml
+<property>  
+<name>fs.trash.interval</name>  
+<value>1440</value>  
+</property>  
+
+8.ä¿ç•™ HLogs çš„æœ€é•¿æ—¶é—´
+hbase.master.logcleaner.ttl 1
+
