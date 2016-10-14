@@ -4,8 +4,10 @@
 pyspark.pth
 /opt/work/gwspark
 
-# ide virtual env:否则找不到spark lib
+#ide virtual env:否则找不到spark lib
+
 home/kevin/galaxy/spark-1.6.2-bin-hadoop2.6/python
+
 /home/kevin/galaxy/spark-1.6.2-bin-hadoop2.6/python/lib/py4j-0.9-src.zip
 
 
