@@ -1,18 +1,31 @@
-1.  Ê¹ÓÃadd jar path/test.jar;·½·¨¼ÓÈë
+1.  ä½¿ç”¨add jar path/test.jar;æ–¹æ³•åŠ å…¥
 
-¸Ã·½·¨µÄÈ±µãÊÇÃ¿´ÎÆô¶¯HiveµÄÊ±ºò¶¼Òª´ÓĞÂ¼ÓÈë£¬ÍË³öhive¾Í»áÊ§Ğ§¡£
+è¯¥æ–¹æ³•çš„ç¼ºç‚¹æ˜¯æ¯æ¬¡å¯åŠ¨Hiveçš„æ—¶å€™éƒ½è¦ä»æ–°åŠ å…¥ï¼Œé€€å‡ºhiveå°±ä¼šå¤±æ•ˆã€‚
 
-2.  Í¨¹ıÉèÖÃhiveµÄÅäÖÃÎÄ¼şhive-site.xml ¼ÓÈë
+2.  é€šè¿‡è®¾ç½®hiveçš„é…ç½®æ–‡ä»¶hive-site.xml åŠ å…¥
 
-ÔÚÅäÖÃÎÄ¼şÖĞÔö¼ÓÅäÖÃ
+åœ¨é…ç½®æ–‡ä»¶ä¸­å¢åŠ é…ç½®
 
 <property>
 <name>hive.aux.jars.path</name>
 <value>file:///jarpath/all_new1.jar,file:///jarpath/all_new2.jar</value>
 </property>
 
-±£´æ¼´¿É¡£
+ä¿å­˜å³å¯ã€‚
 
-¸Ã·½·¨±ÈµÚÒ»ÖÖ·½·¨·½±ãºÜ¶à¡£²»ĞèÒªÃ¿´ÎÆô¶¯HiveÖ´ĞĞÃüÁî¼ÓÈë£¬Ö»ÊÇÅäÖÃÉÔÎ¢¸´ÔÓÒ»Ğ©¡£
+è¯¥æ–¹æ³•æ¯”ç¬¬ä¸€ç§æ–¹æ³•æ–¹ä¾¿å¾ˆå¤šã€‚ä¸éœ€è¦æ¯æ¬¡å¯åŠ¨Hiveæ‰§è¡Œå‘½ä»¤åŠ å…¥ï¼Œåªæ˜¯é…ç½®ç¨å¾®å¤æ‚ä¸€äº›ã€‚
 
-3.  ÔÚ${HIVE_HOMEÖĞ´´½¨ÎÄ¼ş¼Ğauxlib  £¬È»ºó½«×Ô¶¨ÒåjarÎÄ¼ş·ÅÈë¸ÃÎÄ¼ş¼ĞÖĞ¡£
+3.  åœ¨${HIVE_HOMEä¸­åˆ›å»ºæ–‡ä»¶å¤¹auxlib  ï¼Œç„¶åå°†è‡ªå®šä¹‰jaræ–‡ä»¶æ”¾å…¥è¯¥æ–‡ä»¶å¤¹ä¸­ã€‚
+
+
+4.
+hive -f xxx.hql
+
+add jar /opt/work/udf-up.jar;
+
+create temporary function DayOfWeek as 'com.gewara.bigdata.udf.DayOfWeek';
+create temporary function HourDiff as 'com.gewara.bigdata.udf.HourDiff';
+create temporary function SplitName as 'com.gewara.bigdata.udf.SplitName';
+create temporary function DividedPercent as 'com.gewara.bigdata.udf.DividedPercent';
+
+select * from accesslog limit 10;
