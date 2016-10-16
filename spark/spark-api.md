@@ -1,7 +1,7 @@
-1.ÀàËÆÓÚsqlµÄgroupby£¬ÓÃgroupbykey,½á¹ûÊÇ¸ö<key,list[]>
+1.ç±»ä¼¼äºsqlçš„groupbyï¼Œç”¨groupbykey,ç»“æœæ˜¯ä¸ª
 
-2.ĞèÒª¶Ô<k,v>µÄv½øĞĞ¼ÆËã£ºmax£¬addµÈ£¬ÓÃreducebykey
+2.éœ€è¦å¯¹çš„vè¿›è¡Œè®¡ç®—ï¼šmaxï¼Œaddç­‰ï¼Œç”¨reducebykey
 
-3.Í¬Ç°£¬Ö»ÊÇ¶àÁË³õÊ¼Öµ£¬foldByKey(zeroValue = 0,numPartitions = 2)(func = seq)
+3.åŒå‰ï¼Œåªæ˜¯å¤šäº†åˆå§‹å€¼ï¼ŒfoldByKey(zeroValue = 0,numPartitions = 2)(func = seq)
 
-4. ĞèÒª½øĞĞÀàĞÍ×ª»»(v,v)=>(v,u),Ê¹ÓÃaggregateByKey("0")(seqOp,combOp)
+éœ€è¦è¿›è¡Œç±»å‹è½¬æ¢(v,v)=>(v,u),ä½¿ç”¨aggregateByKey("0")(seqOp,combOp)
