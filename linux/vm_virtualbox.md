@@ -1,8 +1,8 @@
 1.VirtualBox-5.0.12-104815-Win
-2.win7 ÆÆ½â°æÌæ»»uxtheme.dll:f8½øÈë°²È«Ä£Ê½£¬Ìæ»»
+2.win7 ç ´è§£ç‰ˆæ›¿æ¢uxtheme.dll:f8è¿›å…¥å®‰å…¨æ¨¡å¼ï¼Œæ›¿æ¢
 3.debian:debian-8.2.0-i386-DVD-1.iso
-4.·ÖÇø£º/=15g /boot=100m swap=2g /home=other
-5.grub Æô¶¯Æ÷£º/dev/sda1
+4.åˆ†åŒºï¼š/=15g /boot=100m swap=2g /home=other
+5.grub å¯åŠ¨å™¨ï¼š/dev/sda1
 
 6.vi /etc/apt/source.list
 
@@ -21,9 +21,9 @@ apt-get install linux-headers-$(uname -r) build-essential
 apt-get install sudo
 chmod +w /etc/sudoers
  vim /etc/sudoers
- Ìí¼ÓÒ»ĞĞ   username     ALL=(ALL) ALL
- ÆäÖĞusernameÊÇÄãµÄÓÃ»§Ãû£¬±£´æ
- ¸ü¸ÄsudoersÎÄ¼şÈ¨ÏŞ  chmod 0440 /etc/sudoers
+ æ·»åŠ ä¸€è¡Œ   username     ALL=(ALL) ALL
+ å…¶ä¸­usernameæ˜¯ä½ çš„ç”¨æˆ·åï¼Œä¿å­˜
+ æ›´æ”¹sudoersæ–‡ä»¶æƒé™  chmod 0440 /etc/sudoers
 
 9#ll
 vim .bashrc
@@ -32,24 +32,30 @@ source .bashrc
 
 10#
 dpkg-reconfigure locales
-Ñ¡£º
+é€‰ï¼š
 en_US ISO-8859-1 
 zh_CN GB2312 
 zh_CN.GBK GBK 
 zh_CN.UTF-8 UTF-8 
 zh_TW BIG5 
 zh_TW.UTF-8 UTF-8
-°²×°ÖĞÎÄ×ÖÌå
+å®‰è£…ä¸­æ–‡å­—ä½“
 apt-get install ttf-arphic-gbsn00lp ttf-arphic-gkai00mp ttf-arphic-bsmi00lp ttf-arphic-bkai00mp
 
 
-Ìí¼ÓÖĞÎÄÊäÈë·¨
-
+æ·»åŠ ä¸­æ–‡è¾“å…¥æ³•
+#ibus-pinyin
 apt-get install ibus-pinyin
 ibus-setup
 reboot
+åœ¨input sourceä¸­é€‰æ‹©chinese(pinyin)
 
-ÔÚinput sourceÖĞÑ¡Ôñchinese(pinyin)
+#googlepinyin
+dpkg-reconfigure locales   é€‰æ‹©zh_CN.UTF8
+apt-get install fcitx fcitx-googlepinyin
+reboot
+im-config è®¾ç½®fcitx
+gsettings set org.gnome.settings-daemon.plugins.keyboard active false
 
 
 11.install jdk pycharm
@@ -60,11 +66,11 @@ wget http://download.jetbrains.com/python/pycharm-community-4.5.5.tar.gz
 sudo tar zxvf ./jdk-7u79-linux-i586.tar.gz  -C /home/kevin/galaxy
 sudo tar zxvf ./pycharm-community-4.5.5.tar.gz  -C /home/kevin/galaxy
 
-ÔÚinterpreterÖĞÌí¼Óvirtue env£¬install pip py4j,
-ÔÚ/home/kevin/spark_virtual_env/local/lib/python2.7/site-packagesÏÂ
-ĞÂ½¨pyspark.pth£º/home/kevin/galaxy/spark-1.6.2-bin-hadoop2.6/python
-ÔÚ/usr/lib/python2.7/dist-packagesÏÂ£¬
-ĞÂ½¨py-spark.pth£º/home/kevin/workspace/pycharm/spark_py
+åœ¨interpreterä¸­æ·»åŠ virtue envï¼Œinstall pip py4j,
+åœ¨/home/kevin/spark_virtual_env/local/lib/python2.7/site-packagesä¸‹
+æ–°å»ºpyspark.pthï¼š/home/kevin/galaxy/spark-1.6.2-bin-hadoop2.6/python
+åœ¨/usr/lib/python2.7/dist-packagesä¸‹ï¼Œ
+æ–°å»ºpy-spark.pthï¼š/home/kevin/workspace/pycharm/spark_py
 
 
 12.git 
