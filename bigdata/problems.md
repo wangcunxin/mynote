@@ -19,7 +19,7 @@ kill -9 pid 无效
 kill -9 115279<父进程ppid>
 
 6.java.io.IOException: failed log splitting  不能正常启动hbase master
-hdfs dfs -mv /hbase/WALs/dn4.gewara.cn,60020,1447899619647-splitting /tmp/hbase2/
+hdfs dfs -mv /hbase/WALs/dn4.gewara.cn,60020,1447899619647-splitting /tmp/hbase/wals/
 
 7.hdfs 开启回收站服务
 /user/用户名/.Trash/Current/文件 
@@ -31,4 +31,18 @@ core-site.xml
 
 8.保留 HLogs 的最长时间
 hbase.master.logcleaner.ttl 1
+
+9.
+
+
+
+
+
+
+
+
+
+
+
+
 
